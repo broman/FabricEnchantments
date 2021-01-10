@@ -1,5 +1,6 @@
 package dev.broman.fabricenchantments.enchantments;
 
+import dev.broman.fabricenchantments.CustomEnchantment;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentTarget;
 import net.minecraft.entity.Entity;
@@ -8,7 +9,11 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 
-public class FrostedEdge extends Enchantment {
+/**
+  * @author broman (ryan@broman.dev)
+  * @since 2021-01-07
+  */
+public class FrostedEdge extends CustomEnchantment {
 
     public FrostedEdge() {
         super(Enchantment.Rarity.UNCOMMON, EnchantmentTarget.WEAPON, new EquipmentSlot[] {EquipmentSlot.MAINHAND});
@@ -32,5 +37,9 @@ public class FrostedEdge extends Enchantment {
         }
 
         super.onTargetDamaged(user, target, level);
+    }
+
+    public String getIdentifier() {
+        return "frosted-edge";
     }
 }
