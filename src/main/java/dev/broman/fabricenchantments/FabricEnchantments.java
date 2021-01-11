@@ -1,53 +1,55 @@
 package dev.broman.fabricenchantments;
 
-import dev.broman.fabricenchantments.enchantments.FrostedEdge;
-import dev.broman.fabricenchantments.enchantments.PoisonedEdge;
-import io.github.classgraph.ClassGraph;
-import io.github.classgraph.ClassInfo;
-import io.github.classgraph.ClassInfoList;
-import io.github.classgraph.ScanResult;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import dev.broman.fabricenchantments.enchantments.*;
 import net.fabricmc.api.ModInitializer;
-import net.minecraft.enchantment.Enchantment;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
-import java.lang.reflect.InvocationTargetException;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
 import java.util.Random;
 
 /**
-  * @author broman (ryan@broman.dev)
-  * @since 2021-01-07
-  */
+ * @author broman (ryan@broman.dev)
+ * @since 2021-01-07
+ */
 public class FabricEnchantments implements ModInitializer {
-	public static final Logger LOGGER = LogManager.getLogger();
+  public static final Logger LOGGER = LogManager.getLogger();
+  public static final Random RANDOM = new Random();
 
-	public static final Random RANDOM = new Random();
+  private static final String NAMESPACE = "fabricenchantments";
 
-	public void onInitialize() {
-		LOGGER.info("Initializing!");
-		ScanResult result = new ClassGraph()
-				.whitelistPackages("dev.broman.fabricenchantments.enchantments")
-				.scan();
-		ClassInfoList list = result.getAllClasses();
+  public void onInitialize() {
+    info("Initializing!");
+    Registry.register(Registry.ENCHANTMENT, new Identifier(NAMESPACE, Criticality.getIdentifier()), new Criticality());
+    Registry.register(Registry.ENCHANTMENT, new Identifier(NAMESPACE, FrostedEdge.getIdentifier()), new FrostedEdge());
+    Registry.register(Registry.ENCHANTMENT, new Identifier(NAMESPACE, Knockup.getIdentifier()), new Knockup());
+    Registry.register(Registry.ENCHANTMENT, new Identifier(NAMESPACE, PoisonedEdge.getIdentifier()), new PoisonedEdge());
+    Registry.register(Registry.ENCHANTMENT, new Identifier(NAMESPACE, ShockEnchantment.getIdentifier()), new ShockEnchantment());
+    info("All enchantments registered!");
+  }
 
-		for(ClassInfo info: list) {
-			try {
-				Class<? extends CustomEnchantment> loaded = info.loadClass(CustomEnchantment.class);
-				CustomEnchantment enchantment = loaded.getConstructor().newInstance();
-				Registry.register(
-						Registry.ENCHANTMENT,
-						new Identifier("fabricenchantments", enchantment.getIdentifier()),
-						enchantment
-				);
-				LOGGER.info("Registered " + enchantment.getIdentifier());
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-	}
+  public void info(String msg) {
+    LOGGER.info(NAMESPACE + ": " + msg);
+  }
+
+  public void warn(String msg) {
+    LOGGER.warn(NAMESPACE + ": " + msg);
+  }
+
+  public void error(String msg) {
+    LOGGER.error(NAMESPACE + ": " + msg);
+  }
+
+  public void fatal(String msg) {
+    LOGGER.fatal(NAMESPACE + ": " + msg);
+  }
+
+  public void debug(String msg) {
+    LOGGER.debug(NAMESPACE + ": " + msg);
+  }
+
+  public void debug(Object msg) {
+    LOGGER.debug(msg);
+  }
 }
