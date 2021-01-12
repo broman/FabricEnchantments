@@ -1,5 +1,6 @@
 package dev.broman.fabricenchantments.enchantments;
 
+import dev.broman.fabricenchantments.FabricEnchantments;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentTarget;
 import net.minecraft.entity.*;
@@ -24,16 +25,27 @@ public class ShockEnchantment extends Enchantment {
   }
 
   @Override
+  public int getMinPower(int level) {
+    return 10 * level;
+  }
+
+  @Override
+  public int getMaxLevel() {
+    return 5;
+  }
+
+  @Override
   public void onUserDamaged(LivingEntity user, Entity attacker, int level) {
-    if (attacker instanceof LivingEntity) {
+    FabricEnchantments.info(attacker);
+    if(attacker instanceof LivingEntity) {
       Random rng = ((LivingEntity) attacker).getRandom();
-      if (attacker.world.isSkyVisible(new BlockPos(attacker.getPos())) && rng.nextInt(1) < 0.1 + (.1 * level - 1)) {
+      if(attacker.world.isSkyVisible(new BlockPos(attacker.getPos())) && rng.nextInt(1) < 0.1 + (.1 * level - 1)) {
         LightningEntity bolt = EntityType.LIGHTNING_BOLT.create(attacker.world);
-        if (bolt != null) {
+        if(bolt != null) {
           bolt.move(MovementType.SELF, attacker.getPos());
           bolt.setChanneler(attacker instanceof ServerPlayerEntity ? (ServerPlayerEntity) attacker : null);
+          attacker.world.spawnEntity(bolt);
         }
-        attacker.world.spawnEntity(bolt);
       }
     }
   }
