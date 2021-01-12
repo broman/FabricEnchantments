@@ -12,9 +12,17 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 
+/**
+  * @author broman (ryan@broman.dev)
+  * @since 2021-01-11
+  */
 public class ChorusEmpowerment extends Enchantment {
   public ChorusEmpowerment() {
-    super(Enchantment.Rarity.COMMON, EnchantmentTarget.ARMOR_CHEST, new EquipmentSlot[] {EquipmentSlot.CHEST});
+    super(Enchantment.Rarity.COMMON, EnchantmentTarget.ARMOR_CHEST, new EquipmentSlot[]{EquipmentSlot.CHEST});
+  }
+
+  public static String getIdentifier() {
+    return "chorus-empowerment";
   }
 
   @Override
@@ -27,27 +35,28 @@ public class ChorusEmpowerment extends Enchantment {
     return 3;
   }
 
-  public static String getIdentifier() {
-    return "chorus-empowerment";
-  }
-
   @Override
   public void onUserDamaged(LivingEntity user, Entity attacker, int level) {
-    if(attacker instanceof LivingEntity && ((LivingEntity) attacker).getRandom().nextInt(getMaxLevel() + 1) < level) {
-      teleportPlayer((LivingEntity) attacker);
+    if (attacker instanceof LivingEntity && ((LivingEntity) attacker).getRandom().nextInt(getMaxLevel() * 2 + 1) < level) {
+      teleportPlayerChorus((LivingEntity) attacker);
     }
   }
 
-  private void teleportPlayer(LivingEntity target) {
+  /**
+   * Teleports a player with the same logic of a chorus fruit consumption
+   *
+   * @param target The player to teleport
+   */
+  private void teleportPlayerChorus(LivingEntity target) {
     World world = target.world;
     if (!world.isClient) {
       double d = target.getX();
       double e = target.getY();
       double f = target.getZ();
 
-      for(int i = 0; i < 16; ++i) {
+      for (int i = 0; i < 16; ++i) {
         double g = target.getX() + (target.getRandom().nextDouble() - 0.5D) * 16.0D;
-        double h = MathHelper.clamp(target.getY() + (double)(target.getRandom().nextInt(16) - 8), 0.0D, world.getDimensionHeight() - 1);
+        double h = MathHelper.clamp(target.getY() + (double) (target.getRandom().nextInt(16) - 8), 0.0D, world.getDimensionHeight() - 1);
         double j = target.getZ() + (target.getRandom().nextDouble() - 0.5D) * 16.0D;
         if (target.hasVehicle()) {
           target.stopRiding();
