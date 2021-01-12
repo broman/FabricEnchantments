@@ -1,9 +1,15 @@
-# Fabric Example Mod
+# FabricEnchantments
 
-## Setup
+A simple mod that adds several custom enchantments to the Fabric Mod Loader.
 
-For setup instructions please see the [fabric wiki page](https://fabricmc.net/wiki/tutorial:setup) that relates to the IDE that you are using.
+## Enchantments
 
-## License
+####Chest
+- Chorus Empowerment: Teleports attackers away from you
+- Shock Enchantment (Name WIP): Strikes attackers with lightning
 
-This template is available under the CC0 license. Feel free to learn from it and incorporate it in your own projects.
+####Sword
+- Criticality: Has a chance to deal extra magic damage
+- Frosted Edge: Slows and weakens the target
+- Knockup: Launches the target into the air
+- Poisioned Edge: Applies poision to the target

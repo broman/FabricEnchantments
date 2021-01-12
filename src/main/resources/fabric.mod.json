@@ -1,16 +1,16 @@
 {
   "schemaVersion": 1,
-  "id": "modid",
+  "id": "fabricenchantments",
   "version": "${version}",
 
-  "name": "Example Mod",
-  "description": "This is an example description! Tell everyone what your mod is about!",
+  "name": "Fabric Enchantments",
+  "description": "Fabric Enchantments adds a plethora of custom Enchantments to the Fabric Loader",
   "authors": [
     "Me!"
   ],
   "contact": {
-    "homepage": "https://fabricmc.net/",
-    "sources": "https://github.com/FabricMC/fabric-example-mod"
+    "homepage": "https://broman.dev/",
+    "sources": "https://github.com/broman/FabricEnchantments"
   },
 
   "license": "CC0-1.0",
