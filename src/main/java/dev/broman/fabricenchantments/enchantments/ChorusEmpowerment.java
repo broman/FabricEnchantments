@@ -1,5 +1,7 @@
 package dev.broman.fabricenchantments.enchantments;
 
+import dev.broman.fabricenchantments.FabricEnchantments;
+import net.minecraft.client.options.KeyBinding;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentTarget;
 import net.minecraft.entity.Entity;
@@ -50,21 +52,21 @@ public class ChorusEmpowerment extends Enchantment {
   private void teleportPlayerChorus(LivingEntity target) {
     World world = target.world;
     if (!world.isClient) {
-      double d = target.getX();
-      double e = target.getY();
-      double f = target.getZ();
+      double targetX = target.getX();
+      double targetY = target.getY();
+      double targetZ = target.getZ();
 
       for (int i = 0; i < 16; ++i) {
-        double g = target.getX() + (target.getRandom().nextDouble() - 0.5D) * 16.0D;
-        double h = MathHelper.clamp(target.getY() + (double) (target.getRandom().nextInt(16) - 8), 0.0D, world.getDimensionHeight() - 1);
-        double j = target.getZ() + (target.getRandom().nextDouble() - 0.5D) * 16.0D;
+        double candidateX = targetX + (target.getRandom().nextDouble() - 0.5D) * 16.0D;
+        double candidateY = MathHelper.clamp(targetY + (double) (target.getRandom().nextInt(16) - 8), 0.0D, world.getDimensionHeight() - 1);
+        double candidateZ = targetZ + (target.getRandom().nextDouble() - 0.5D) * 16.0D;
         if (target.hasVehicle()) {
           target.stopRiding();
         }
 
-        if (target.teleport(g, h, j, true)) {
+        if (target.teleport(candidateX, candidateY, candidateZ, true)) {
           SoundEvent soundEvent = target instanceof FoxEntity ? SoundEvents.ENTITY_FOX_TELEPORT : SoundEvents.ITEM_CHORUS_FRUIT_TELEPORT;
-          world.playSound(null, d, e, f, soundEvent, SoundCategory.PLAYERS, 1.0F, 1.0F);
+          world.playSound(null, targetX, targetY, targetZ, soundEvent, SoundCategory.PLAYERS, 1.0F, 1.0F);
           target.playSound(soundEvent, 1.0F, 1.0F);
           break;
         }
