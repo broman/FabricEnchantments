@@ -18,13 +18,13 @@ import net.minecraft.world.World;
   * @author broman (ryan@broman.dev)
   * @since 2021-01-11
   */
-public class ChorusEmpowerment extends Enchantment {
-  public ChorusEmpowerment() {
+public class EndBlessing extends Enchantment {
+  public EndBlessing() {
     super(Enchantment.Rarity.COMMON, EnchantmentTarget.ARMOR_CHEST, new EquipmentSlot[]{EquipmentSlot.CHEST});
   }
 
   public static String getIdentifier() {
-    return "chorus-empowerment";
+    return "ender-blessing";
   }
 
   @Override

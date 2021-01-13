@@ -25,8 +25,8 @@ public class FabricEnchantments implements ModInitializer {
     Registry.register(Registry.ENCHANTMENT, new Identifier(NAMESPACE, FrostedEdge.getIdentifier()), new FrostedEdge());
     Registry.register(Registry.ENCHANTMENT, new Identifier(NAMESPACE, Knockup.getIdentifier()), new Knockup());
     Registry.register(Registry.ENCHANTMENT, new Identifier(NAMESPACE, PoisonedEdge.getIdentifier()), new PoisonedEdge());
-    Registry.register(Registry.ENCHANTMENT, new Identifier(NAMESPACE, ChorusEmpowerment.getIdentifier()), new ChorusEmpowerment());
-    Registry.register(Registry.ENCHANTMENT, new Identifier(NAMESPACE, ShockEnchantment.getIdentifier()), new ShockEnchantment());
+    Registry.register(Registry.ENCHANTMENT, new Identifier(NAMESPACE, EndBlessing.getIdentifier()), new EndBlessing());
+    Registry.register(Registry.ENCHANTMENT, new Identifier(NAMESPACE, ShockingRiposte.getIdentifier()), new ShockingRiposte());
 
     info("All enchantments registered!");
   }

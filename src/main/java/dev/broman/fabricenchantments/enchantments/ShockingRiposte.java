@@ -1,6 +1,5 @@
 package dev.broman.fabricenchantments.enchantments;
 
-import dev.broman.fabricenchantments.FabricEnchantments;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentTarget;
 import net.minecraft.entity.*;
@@ -10,15 +9,13 @@ import net.minecraft.util.math.BlockPos;
 
 import java.util.Random;
 
-
-public class ShockEnchantment extends Enchantment {
-  public ShockEnchantment() {
-    super(Rarity.UNCOMMON, EnchantmentTarget.ARMOR, new EquipmentSlot[]{
-        EquipmentSlot.CHEST,
-        EquipmentSlot.FEET,
-        EquipmentSlot.HEAD,
-        EquipmentSlot.LEGS
-    });
+/**
+  * @author broman (ryan@broman.dev)
+  * @since 2021-01-10
+  */
+public class ShockingRiposte extends Enchantment {
+  public ShockingRiposte() {
+    super(Rarity.UNCOMMON, EnchantmentTarget.ARMOR, new EquipmentSlot[]{EquipmentSlot.CHEST});
   }
 
   public static String getIdentifier() {
@@ -43,12 +40,11 @@ public class ShockEnchantment extends Enchantment {
 
   @Override
   public void onUserDamaged(LivingEntity user, Entity attacker, int level) {
-    FabricEnchantments.info(attacker);
-    if(attacker instanceof LivingEntity) {
+    if (attacker instanceof LivingEntity) {
       Random rng = ((LivingEntity) attacker).getRandom();
-      if(attacker.world.isSkyVisible(new BlockPos(attacker.getPos())) && rng.nextInt(1) < 0.1 + (.1 * level - 1)) {
+      if (attacker.world.isSkyVisible(new BlockPos(attacker.getPos())) && rng.nextInt(getMaxLevel() * 2 + 1) < level + 2) {
         LightningEntity bolt = EntityType.LIGHTNING_BOLT.create(attacker.world);
-        if(bolt != null) {
+        if (bolt != null) {
           bolt.move(MovementType.SELF, attacker.getPos());
           bolt.setChanneler(attacker instanceof ServerPlayerEntity ? (ServerPlayerEntity) attacker : null);
           attacker.world.spawnEntity(bolt);
