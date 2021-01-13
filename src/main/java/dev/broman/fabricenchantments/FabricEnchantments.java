@@ -21,12 +21,12 @@ public class FabricEnchantments implements ModInitializer {
 
   public void onInitialize() {
     info("Initializing!");
-    Registry.register(Registry.ENCHANTMENT, new Identifier(NAMESPACE, Criticality.getIdentifier()), new Criticality());
-    Registry.register(Registry.ENCHANTMENT, new Identifier(NAMESPACE, FrostedEdge.getIdentifier()), new FrostedEdge());
-    Registry.register(Registry.ENCHANTMENT, new Identifier(NAMESPACE, Knockup.getIdentifier()), new Knockup());
-    Registry.register(Registry.ENCHANTMENT, new Identifier(NAMESPACE, PoisonedEdge.getIdentifier()), new PoisonedEdge());
-    Registry.register(Registry.ENCHANTMENT, new Identifier(NAMESPACE, EndBlessing.getIdentifier()), new EndBlessing());
-    Registry.register(Registry.ENCHANTMENT, new Identifier(NAMESPACE, ShockingRiposte.getIdentifier()), new ShockingRiposte());
+    Registry.register(Registry.ENCHANTMENT, new Identifier(NAMESPACE, CriticalityEnchantment.getIdentifier()), new CriticalityEnchantment());
+    Registry.register(Registry.ENCHANTMENT, new Identifier(NAMESPACE, FrostedEdgeEnchantment.getIdentifier()), new FrostedEdgeEnchantment());
+    Registry.register(Registry.ENCHANTMENT, new Identifier(NAMESPACE, KnockupEnchantment.getIdentifier()), new KnockupEnchantment());
+    Registry.register(Registry.ENCHANTMENT, new Identifier(NAMESPACE, PoisonedEdgeEnchantment.getIdentifier()), new PoisonedEdgeEnchantment());
+    Registry.register(Registry.ENCHANTMENT, new Identifier(NAMESPACE, EndBlessingEnchantment.getIdentifier()), new EndBlessingEnchantment());
+    Registry.register(Registry.ENCHANTMENT, new Identifier(NAMESPACE, ShockingRiposteEnchantment.getIdentifier()), new ShockingRiposteEnchantment());
 
     info("All enchantments registered!");
   }

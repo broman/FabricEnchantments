@@ -1,9 +1,8 @@
 package dev.broman.fabricenchantments.enchantments;
 
-import dev.broman.fabricenchantments.FabricEnchantments;
-import net.minecraft.client.options.KeyBinding;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentTarget;
+import net.minecraft.enchantment.ThornsEnchantment;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
@@ -18,8 +17,8 @@ import net.minecraft.world.World;
   * @author broman (ryan@broman.dev)
   * @since 2021-01-11
   */
-public class EndBlessing extends Enchantment {
-  public EndBlessing() {
+public class EndBlessingEnchantment extends Enchantment {
+  public EndBlessingEnchantment() {
     super(Enchantment.Rarity.COMMON, EnchantmentTarget.ARMOR_CHEST, new EquipmentSlot[]{EquipmentSlot.CHEST});
   }
 
@@ -42,6 +41,14 @@ public class EndBlessing extends Enchantment {
     if (attacker instanceof LivingEntity && ((LivingEntity) attacker).getRandom().nextInt(getMaxLevel() * 2 + 1) < level) {
       teleportPlayerChorus((LivingEntity) attacker);
     }
+  }
+
+  @Override
+  protected boolean canAccept(Enchantment other) {
+    return super.canAccept(other) && !(
+        other instanceof ShockingRiposteEnchantment
+        || other instanceof ThornsEnchantment
+    );
   }
 
   /**

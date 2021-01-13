@@ -12,14 +12,14 @@ import net.minecraft.entity.effect.StatusEffects;
  * @author broman (ryan@broman.dev)
  * @since 2021-01-07
  */
-public class FrostedEdge extends Enchantment {
+public class PoisonedEdgeEnchantment extends Enchantment {
 
-  public FrostedEdge() {
+  public PoisonedEdgeEnchantment() {
     super(Enchantment.Rarity.UNCOMMON, EnchantmentTarget.WEAPON, new EquipmentSlot[]{EquipmentSlot.MAINHAND});
   }
 
   public static String getIdentifier() {
-    return "frosted-edge";
+    return "poisoned-edge";
   }
 
   @Override
@@ -35,8 +35,7 @@ public class FrostedEdge extends Enchantment {
   @Override
   public void onTargetDamaged(LivingEntity user, Entity target, int level) {
     if (target instanceof LivingEntity) {
-      ((LivingEntity) target).addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 20 * 2 * level, level - 1));
-      ((LivingEntity) target).addStatusEffect(new StatusEffectInstance(StatusEffects.WEAKNESS, 20 * 2 * level, level - 1));
+      ((LivingEntity) target).addStatusEffect(new StatusEffectInstance(StatusEffects.POISON, 20 * 2 * level, 1));
     }
 
     super.onTargetDamaged(user, target, level);

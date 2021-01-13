@@ -13,8 +13,8 @@ import java.util.Random;
   * @author broman (ryan@broman.dev)
   * @since 2021-01-10
   */
-public class ShockingRiposte extends Enchantment {
-  public ShockingRiposte() {
+public class ShockingRiposteEnchantment extends Enchantment {
+  public ShockingRiposteEnchantment() {
     super(Rarity.UNCOMMON, EnchantmentTarget.ARMOR, new EquipmentSlot[]{EquipmentSlot.CHEST});
   }
 
@@ -36,6 +36,11 @@ public class ShockingRiposte extends Enchantment {
   public int getProtectionAmount(int level, DamageSource source) {
     if(source == DamageSource.LIGHTNING_BOLT) return 300;
     else return super.getProtectionAmount(level, source);
+  }
+
+  @Override
+  protected boolean canAccept(Enchantment other) {
+    return super.canAccept(other) && !(other instanceof EndBlessingEnchantment);
   }
 
   @Override

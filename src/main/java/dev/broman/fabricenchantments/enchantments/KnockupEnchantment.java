@@ -1,24 +1,22 @@
 package dev.broman.fabricenchantments.enchantments;
 
-import dev.broman.fabricenchantments.FabricEnchantments;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentTarget;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.damage.DamageSource;
 
 /**
  * @author broman (ryan@broman.dev)
- * @since 2021-01-10
+ * @since 20201-01-10
  */
-public class Criticality extends Enchantment {
-  public Criticality() {
-    super(Enchantment.Rarity.COMMON, EnchantmentTarget.WEAPON, new EquipmentSlot[]{EquipmentSlot.MAINHAND});
+public class KnockupEnchantment extends Enchantment {
+  public KnockupEnchantment() {
+    super(Enchantment.Rarity.UNCOMMON, EnchantmentTarget.WEAPON, new EquipmentSlot[]{EquipmentSlot.MAINHAND});
   }
 
   public static String getIdentifier() {
-    return "criticality";
+    return "knockup";
   }
 
   @Override
@@ -28,15 +26,13 @@ public class Criticality extends Enchantment {
 
   @Override
   public int getMaxLevel() {
-    return 3;
+    return 5;
   }
 
   @Override
   public void onTargetDamaged(LivingEntity user, Entity target, int level) {
     if (target instanceof LivingEntity) {
-      if (FabricEnchantments.RANDOM.nextInt(getMaxLevel() + 1) < level) {
-        target.damage(DamageSource.MAGIC, (float) (level / 1.5));
-      }
+      target.addVelocity(0, level * .1, 0);
     }
 
     super.onTargetDamaged(user, target, level);
