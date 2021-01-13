@@ -26,8 +26,7 @@ public class FabricEnchantments implements ModInitializer {
     Registry.register(Registry.ENCHANTMENT, new Identifier(NAMESPACE, Knockup.getIdentifier()), new Knockup());
     Registry.register(Registry.ENCHANTMENT, new Identifier(NAMESPACE, PoisonedEdge.getIdentifier()), new PoisonedEdge());
     Registry.register(Registry.ENCHANTMENT, new Identifier(NAMESPACE, ChorusEmpowerment.getIdentifier()), new ChorusEmpowerment());
-    // TODO: Prevent user from taking damage from the inflicted lightning
-    //Registry.register(Registry.ENCHANTMENT, new Identifier(NAMESPACE, ShockEnchantment.getIdentifier()), new ShockEnchantment());
+    Registry.register(Registry.ENCHANTMENT, new Identifier(NAMESPACE, ShockEnchantment.getIdentifier()), new ShockEnchantment());
 
     info("All enchantments registered!");
   }

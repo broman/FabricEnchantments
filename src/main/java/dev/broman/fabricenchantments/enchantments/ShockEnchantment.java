@@ -4,6 +4,7 @@ import dev.broman.fabricenchantments.FabricEnchantments;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentTarget;
 import net.minecraft.entity.*;
+import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.math.BlockPos;
 
@@ -32,6 +33,12 @@ public class ShockEnchantment extends Enchantment {
   @Override
   public int getMaxLevel() {
     return 5;
+  }
+
+  @Override
+  public int getProtectionAmount(int level, DamageSource source) {
+    if(source == DamageSource.LIGHTNING_BOLT) return 300;
+    else return super.getProtectionAmount(level, source);
   }
 
   @Override
