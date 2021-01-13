@@ -3,11 +3,13 @@ package dev.broman.fabricenchantments;
 import dev.broman.fabricenchantments.enchantments.*;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.Random;
+
+import static net.minecraft.util.registry.Registry.ENCHANTMENT;
+import static net.minecraft.util.registry.Registry.register;
 
 /**
  * @author broman (ryan@broman.dev)
@@ -19,43 +21,19 @@ public class FabricEnchantments implements ModInitializer {
 
   private static final String NAMESPACE = "fabricenchantments";
 
-  public void onInitialize() {
-    info("Initializing!");
-    Registry.register(Registry.ENCHANTMENT, new Identifier(NAMESPACE, CriticalityEnchantment.getIdentifier()), new CriticalityEnchantment());
-    Registry.register(Registry.ENCHANTMENT, new Identifier(NAMESPACE, FrostedEdgeEnchantment.getIdentifier()), new FrostedEdgeEnchantment());
-    Registry.register(Registry.ENCHANTMENT, new Identifier(NAMESPACE, KnockupEnchantment.getIdentifier()), new KnockupEnchantment());
-    Registry.register(Registry.ENCHANTMENT, new Identifier(NAMESPACE, PoisonedEdgeEnchantment.getIdentifier()), new PoisonedEdgeEnchantment());
-    Registry.register(Registry.ENCHANTMENT, new Identifier(NAMESPACE, EndBlessingEnchantment.getIdentifier()), new EndBlessingEnchantment());
-    Registry.register(Registry.ENCHANTMENT, new Identifier(NAMESPACE, ShockingRiposteEnchantment.getIdentifier()), new ShockingRiposteEnchantment());
-
-    info("All enchantments registered!");
-  }
-
   public static void info(String msg) {
     LOGGER.info(NAMESPACE + ": " + msg);
   }
 
-  public static void info(Object msg) {
-    LOGGER.info(NAMESPACE + ": " + msg);
-  }
+  public void onInitialize() {
+    info("Initializing!");
+    register(ENCHANTMENT, new Identifier(NAMESPACE, CriticalityEnchantment.getIdentifier()), new CriticalityEnchantment());
+    register(ENCHANTMENT, new Identifier(NAMESPACE, FrostedEdgeEnchantment.getIdentifier()), new FrostedEdgeEnchantment());
+    register(ENCHANTMENT, new Identifier(NAMESPACE, KnockupEnchantment.getIdentifier()), new KnockupEnchantment());
+    register(ENCHANTMENT, new Identifier(NAMESPACE, PoisonedEdgeEnchantment.getIdentifier()), new PoisonedEdgeEnchantment());
+    register(ENCHANTMENT, new Identifier(NAMESPACE, EndBlessingEnchantment.getIdentifier()), new EndBlessingEnchantment());
+    register(ENCHANTMENT, new Identifier(NAMESPACE, ShockingRiposteEnchantment.getIdentifier()), new ShockingRiposteEnchantment());
 
-  public void warn(String msg) {
-    LOGGER.warn(NAMESPACE + ": " + msg);
-  }
-
-  public void error(String msg) {
-    LOGGER.error(NAMESPACE + ": " + msg);
-  }
-
-  public void fatal(String msg) {
-    LOGGER.fatal(NAMESPACE + ": " + msg);
-  }
-
-  public void debug(String msg) {
-    LOGGER.debug(NAMESPACE + ": " + msg);
-  }
-
-  public void debug(Object msg) {
-    LOGGER.debug(msg);
+    info("All enchantments registered!");
   }
 }
